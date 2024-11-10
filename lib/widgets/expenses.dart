@@ -32,14 +32,20 @@ class _ExpensesState extends State<Expenses> {
       isScrollControlled: true,
       context: context,
       builder: (ctx) => NewExpense(
-        onSubmitExpense: addExpense,
+        onSubmitExpense: _addExpense,
       ),
     );
   }
 
-  void addExpense(Expense expense) {
+  void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(int index) {
+    setState(() {
+      _registeredExpenses.removeAt(index);
     });
   }
 
@@ -56,7 +62,10 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         children: [
           const Text('The chart'),
-          Expanded(child: ExpensesList(expenses: _registeredExpenses))
+          Expanded(
+            child: ExpensesList(
+                expenses: _registeredExpenses, onRemoveExpense: _removeExpense),
+          )
         ],
       ),
     );
