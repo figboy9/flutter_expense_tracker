@@ -21,7 +21,7 @@ class ExpensesList extends StatelessWidget {
               horizontal: Theme.of(context).cardTheme.margin!.horizontal),
           // decoration: ShapeDecoration(shape: Theme.of(context).cardTheme.shape),
         ),
-        key: UniqueKey(),
+        key: Key(expenses[index].id),
         onDismissed: (d) => {
           onRemoveExpense(index),
         },
